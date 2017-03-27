@@ -38,20 +38,6 @@ function hd_basement_edit_dashboard_widgets() {
 				'context'	=> 'normal',
 				'action'	=> 'remove',
 			),
-			'content_post'	=> array(
-				'id'		=> 'dashboard_hd_basement_content_post',
-				'context'	=> 'normal',
-				'action'	=> 'add',
-				'title'		=> __( 'Posts', 'hd-basement' ),
-				'callback'	=> 'hd_basement_admin_dashboard_content_post'
-			),
-			'content_page'	=> array(
-				'id'		=> 'dashboard_hd_basement_content_page',
-				'context'	=> 'normal',
-				'action'	=> 'add',
-				'title'		=> __( 'Pages', 'hd-basement' ),
-				'callback'	=> 'hd_basement_admin_dashboard_content_page'
-			),
 			'hd_welcome'	=> array(
 				'id'		=> 'dashboard_hd_basement_hd_welcome',
 				'context'	=> 'side',
@@ -165,24 +151,6 @@ function hd_basement_maybe_add_dashboard_widget_help( $widgets ) {
 }
 
 add_filter( 'hd_basement_edit_dashboard_widgets', 'hd_basement_maybe_add_dashboard_widget_help' );
-
-/**
- * 
- */
-function hd_basement_admin_dashboard_content_post() {
-
-	echo 'Posts';
-
-}
-
-/**
- * 
- */
-function hd_basement_admin_dashboard_content_page() {
-
-	echo 'Pages';
-
-}
 
 /**
  * allow function to be overwritten by checking whether a function with

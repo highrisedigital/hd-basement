@@ -12,8 +12,8 @@ function hd_basement_add_top_level_menu_pages() {
 
 			// add a new menu item linking to the wordpress menus page
 			add_menu_page(
-				'Menus',
-				'Menus',
+				__( 'Menus', 'hd-basement' ),
+				__( 'Menus', 'hd-basement' ),
 				'edit_theme_options',
 				'nav-menus.php',
 				'',
@@ -28,8 +28,8 @@ function hd_basement_add_top_level_menu_pages() {
 
 			// add a new menu item linking to the wordpress widgets page
 			add_menu_page(
-				'Widgets',
-				'Widgets',
+				__( 'Widgets', 'hd-basement' ),
+				__( 'Widgets', 'hd-basement' ),
 				'edit_theme_options',
 				'widgets.php',
 				'',
@@ -41,8 +41,8 @@ function hd_basement_add_top_level_menu_pages() {
 
 		// add a new media/uploads item linking to the wordpress menus page
 		add_menu_page(
-			'Uploads',
-			'Uploads',
+			__( 'Uploads', 'hd-basement' ),
+			__( 'Uploads', 'hd-basement' ),
 			'upload_files',
 			'upload.php',
 			'',
@@ -50,11 +50,68 @@ function hd_basement_add_top_level_menu_pages() {
 			30
 		);
 
+		// add the menu for content
+		add_menu_page(
+			__( 'Content', 'hd-basement' ),
+			__( 'Content', 'hd-basement' ),
+			'edit_posts',
+			'hd_basement_content',
+			'hd_basement_content_page',
+			'dashicons-admin-page',
+			4
+		);
+
 	}
 
 }
 
 add_action( 'admin_menu', 'hd_basement_add_top_level_menu_pages', 10 );
+
+function hd_basement_add_post_type_sub_menus() {
+
+	// get all the post types where we should show ui for
+	$post_types = get_post_types(
+		array(
+			'show_ui'	=> true
+		)
+	);
+
+	// if attachments is in the post types array
+	if( isset( $post_types[ 'attachment' ] ) ) {
+
+		// remove attachments
+		unset( $post_types[ 'attachment' ] );
+
+	}
+
+	// allow post types to be filterable
+	$post_types = apply_filters( 'hd_basement_content_menu_post_types', $post_types );
+
+	// check we have post types to action
+	if( ! empty( $post_types ) ) {
+
+		// loop through each post type
+		foreach( $post_types as $post_type ) {
+
+			// get this post types object
+			$post_type_obj = get_post_type_object( $post_type );
+
+			// add the sub page menu item
+			add_submenu_page(
+				'hd_basement_content',
+				$post_type_obj->labels->name,
+				$post_type_obj->labels->menu_name,
+				'edit_posts',
+				'edit.php?post_type=' . $post_type
+			);
+
+		} // end loop through each post type
+
+	} // end if have post types
+
+}
+
+add_action( 'admin_menu', 'hd_basement_add_post_type_sub_menus' );
 
 /**
  * 
@@ -71,7 +128,9 @@ function hd_basement_edit_admin_menus() {
 				'appearance'	=> 'themes.php',
 				'tools'			=> 'tools.php',
 				'settings'		=> 'options-general.php',
-				'media'			=> 'upload.php'
+				'media'			=> 'upload.php',
+				'posts'			=> 'edit.php',
+				'pages'			=> 'edit.php?post_type=page'
 			)
 		);
 

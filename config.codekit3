@@ -41,6 +41,16 @@
 		"oAP": "\/assets\/css\/hd-color-scheme.css.map",
 		"oF": 0
 		},
+	"\/assets\/images\/hd-logo.png": {
+		"ft": 32768,
+		"iS": 11543,
+		"l": 1,
+		"oA": 0,
+		"oAP": "\/assets\/images\/hd-logo.png",
+		"oF": 0,
+		"opt": 1,
+		"q": 100
+		},
 	"\/assets\/js\/hd-basement-script.js": {
 		"ft": 64,
 		"mi": 1,
@@ -49,36 +59,6 @@
 		"oF": 0,
 		"sC": 1,
 		"tS": 0
-		},
-	"\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/_admin.scssc": {
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/_admin.scssc",
-		"oF": 0
-		},
-	"\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/_mixins.scssc": {
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/_mixins.scssc",
-		"oF": 0
-		},
-	"\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/_variables.scssc": {
-		"ft": 8192,
-		"oA": 1,
-		"oAP": "\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/_variables.scssc",
-		"oF": 0
-		},
-	"\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/hd-basement-style.scssc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/hd-basement-style.scssc",
-		"oF": 0
-		},
-	"\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/hd-color-scheme.scssc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/assets\/scss\/.sass-cache\/defae94d3d6468ef85e6954ac643b2e90c7c8755\/hd-color-scheme.scssc",
-		"oF": 0
 		},
 	"\/assets\/scss\/_admin.scss": {
 		"aP": 1,
@@ -157,6 +137,12 @@
 		"oAP": "\/inc\/admin\/admin-bar.php",
 		"oF": 0
 		},
+	"\/inc\/admin\/admin-menu-content.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/inc\/admin\/admin-menu-content.php",
+		"oF": 0
+		},
 	"\/inc\/admin\/admin-menus.php": {
 		"ft": 8192,
 		"oA": 2,
@@ -169,16 +155,22 @@
 		"oAP": "\/inc\/admin\/admin-widgets.php",
 		"oF": 0
 		},
-	"\/inc\/admin\/capabilities.php": {
+	"\/inc\/admin\/admin.php": {
 		"ft": 8192,
 		"oA": 2,
-		"oAP": "\/inc\/admin\/capabilities.php",
+		"oAP": "\/inc\/admin\/admin.php",
 		"oF": 0
 		},
 	"\/inc\/admin\/scripts.php": {
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/inc\/admin\/scripts.php",
+		"oF": 0
+		},
+	"\/inc\/capabilities.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/inc\/capabilities.php",
 		"oF": 0
 		},
 	"\/inc\/remove-customizer.php": {
@@ -191,6 +183,18 @@
 		"ft": 8192,
 		"oA": 2,
 		"oAP": "\/inc\/widgets.php",
+		"oF": 0
+		},
+	"\/LICENSE": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/LICENSE",
+		"oF": 0
+		},
+	"\/readme.txt": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/readme.txt",
 		"oF": 0
 		}
 	},
