@@ -173,6 +173,12 @@
 		"oAP": "\/inc\/admin\/scripts.php",
 		"oF": 0
 		},
+	"\/inc\/admin\/user-meta.php": {
+		"ft": 8192,
+		"oA": 2,
+		"oAP": "\/inc\/admin\/user-meta.php",
+		"oF": 0
+		},
 	"\/inc\/capabilities.php": {
 		"ft": 8192,
 		"oA": 2,

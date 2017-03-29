@@ -18,6 +18,7 @@ if( is_admin() ) {
 	require_once dirname( __FILE__ ) . '/inc/admin/scripts.php';
 	require_once dirname( __FILE__ ) . '/inc/admin/admin-menus.php';
 	require_once dirname( __FILE__ ) . '/inc/admin/admin-widgets.php';
+	require_once dirname( __FILE__ ) . '/inc/admin/user-meta.php';
 	require_once dirname( __FILE__ ) . '/inc/admin/admin.php';
 	require_once dirname( __FILE__ ) . '/inc/admin/admin-menu-content.php';
 
@@ -38,48 +39,27 @@ require_once dirname( __FILE__ ) . '/inc/remove-customizer.php';
  * 
  * @return boolean true is the user is a hd user and false otherwise
  */
-function is_hd_user() {
+function is_hd_user( $user_id = 0 ) {
 
-	// // set default return to false
-	$output = array();
+	// if no user id is passed
+	if( 0 === $user_id ) {
 
-	// get the current logged in user
-	$user = wp_get_current_user();
+		// use current user
+		$user_id = get_current_user_id();
 
-	// create a filterable array of email domains
-	$email_domains = apply_filters(
-		'hd_basement_email_domain',
-		array(
-			'highrise_digital'	=> 'highrise.digital',
-		)
-	);
+	} // end if have user id
 
-	// if we have email domains
-	if( ! empty( $email_domains ) ) {
+	// get the highrise dashboard setting from user meta
+	$hd_dashboard = get_user_meta( $user_id, 'hd_normal_wp_user', true );
 
-		// loop through each domain
-		foreach( $email_domains as $email_domain ) {
+	// if no value is stored
+	if( '' === $hd_dashboard ) {
 
-			// if this email address in our filterable array of email domains
-			$email = strpos( $user->user_email, $email_domain );
-			
-			if( $email !== false ) {
-				$output[] = true;
-			} else {
-				$output[] = false;
-			}
+		// assume the value is false
+		$hd_dashboard = false;
 
-		} // end loop through email domains
-
-	} // end if have email domains
-
-	// if true exists in the output
-	if( in_array( true, $output ) ) {
-		$value = true;
-	} else {
-		$value = false;
 	}
 
-	return apply_filters( 'is_hd_user', $value, wp_get_current_user() );
+	return apply_filters( 'is_hd_user', filter_var( $hd_dashboard, FILTER_VALIDATE_BOOLEAN ), $user_id );
 
 }

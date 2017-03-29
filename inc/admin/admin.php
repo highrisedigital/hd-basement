@@ -11,23 +11,19 @@ function hd_basement_add_admin_banner() {
 		// if this page is the index.php in the admin
 		if( 'index.php' === $pagenow ) {
 
-			?>
-			<div class="hd-adminhead">
+			// set a filterable path to the dashboard logo
+			$dashboard_logo = apply_filters( 'hd_basement_dashboard_logo_path', '/assets/img/dashboard-logo.png' );
 
-				<div class="hd-adminhead__logo" style="float: left; width: 191px; padding-top: 20px;">
-					<a href="https://highrise.digital/">
-						<img src="<?php echo esc_url( plugins_url( 'assets/images/hd-logo.png', dirname( __FILE__, 2 ) ) ); ?>" alt="Highrise Digitial Logo" />
-					</a>
-				</div><!-- // hd-adminhead-logo -->
+			// if we have a logo in the theme
+			if( file_exists( STYLESHEETPATH . $dashboard_logo ) ) {
 
-				<div class="hd-adminhead__content" style="float: left;">
-					
-				</div><!-- // hd-adminhead-logo -->
+				?>
+				<div class="hd-adminhead">
+					<img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/img/dashboard-logo.png" />
+				</div>
+				<?php
 
-				<span style="clear: both; display: block;"></span>
-
-			</div>
-			<?php
+			} // end if have dashboard logo file
 
 		} // end if this is the dashboard admin page
 
@@ -212,3 +208,39 @@ function hd_basement_post_listing_taxonomy_links() {
 }
 
 add_action( 'all_admin_notices', 'hd_basement_post_listing_taxonomy_links' );
+
+function hd_basement_dashboard_style_nag() {
+
+	// get the status of the dashboard style for this user
+	$hd_dashboard_style = get_user_meta( get_current_user_id(), 'hd_normal_wp_user', true );
+
+	// get the update nag status
+	$hd_dashboard_status = get_user_meta( get_current_user_id(), 'hd_basement_dashboard_notice_dismiss', true );
+
+	// if the status is false (empty string)
+	if( '1' !== $hd_dashboard_style && '1' !== $hd_dashboard_status ) {
+
+		?>
+		<div class="notice notice-info hd-basement-dashboard-js is-dismissible" data-userid="<?php echo absint( get_current_user_id() ); ?>">
+			<p><?php printf( __( 'You are currently using the Highrise Digital optimised WordPress dashboard. To use the regular dashboard, vist your <a href="%s">profile</a> page to disable', 'hd_basement' ), admin_url( 'profile.php' ) ); ?>.</p>
+		</div>
+		<?php
+
+	}
+
+}
+
+add_action( 'admin_notices', 'hd_basement_dashboard_style_nag' );
+
+function hd_basement_footer_notice() {
+
+	?>
+
+	<img src="<?php echo esc_url( plugins_url( 'assets/images/hd-logo.png', dirname( __FILE__, 2 ) ) ); ?>" />
+	<span style="margin-left: 12px; display: inline-block; vertical-align: top;">Website by <a href="https://highrise.digital/">Highrise Digital</a>, built with <a href="https://wordpress.org">WordPress</a></span>
+
+	<?php
+
+}
+
+add_filter( 'admin_footer_text', 'hd_basement_footer_notice' );
