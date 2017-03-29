@@ -46,6 +46,11 @@ add_action( 'all_admin_notices', 'hd_basement_add_admin_banner' );
  */
 function hd_edit_admin_dashboard_title( $translated_text, $text, $domain ) {
 
+	// if the user is a hd user
+	if( is_hd_user() ) {
+		return $translated_text; // do nothing
+	}
+
 	// if this is not the admin return the unaltered text
 	if( ! is_admin() ) {
 		return $translated_text;
@@ -170,13 +175,13 @@ function hd_basement_get_post_type_taxonomy_buttons( $post_type = '', $show_titl
 				// loop through each taxonomy
 				foreach( $taxonomies as $taxonomy ) {
 
-					// if this taxonomy should not show in this content block
-					if( false === $taxonomy->show_in_hd_basement_content_block ) {
+					// if this taxonomy should not show in the wordpress admin menu
+					if( false === $taxonomy->show_in_menu ) {
 						continue;
 					}
 
 					?>
-					<a class="page-title-action" href=""><?php echo esc_html( $taxonomy->label ); ?></a>
+					<a class="page-title-action tax-button" href="<?php echo esc_url( admin_url( 'edit-tags.php?taxonomy=' . $taxonomy->name ) ); ?>"><?php echo esc_html( $taxonomy->label ); ?></a>
 					<?php
 
 				} // end if have taxonomies
@@ -190,3 +195,20 @@ function hd_basement_get_post_type_taxonomy_buttons( $post_type = '', $show_titl
 	} // end if have taxonomies
 
 }
+
+function hd_basement_post_listing_taxonomy_links() {
+
+	// get the current admin screen
+	$screen = get_current_screen();
+
+	// if the screen base is a post listing screen
+	if( 'edit' === $screen->base ) {
+
+		// output the taxonomy buttons
+		hd_basement_get_post_type_taxonomy_buttons( $screen->post_type, false );
+
+	}
+
+}
+
+add_action( 'all_admin_notices', 'hd_basement_post_listing_taxonomy_links' );

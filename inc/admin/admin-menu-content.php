@@ -47,6 +47,13 @@ function hd_basement_content_page() {
 
 						<div class="inside">
 
+							<?php
+
+								// output the post type description
+								echo wpautop( $post_type_obj->description );
+
+							?>
+
 							<div class="hd-basement-content-actions" style="float: left; width: 49.5%; margin-right; 1%;">
 
 								<h4><?php _e( 'Actions', 'hd-basement' ); ?></h4>
@@ -57,9 +64,6 @@ function hd_basement_content_page() {
 								</div>
 
 								<?php
-
-									// output the post type description
-									echo wpautop( $post_type_obj->description );
 
 									// output the taxonomy links for this post type
 									hd_basement_get_post_type_taxonomy_buttons( $post_type, true );
