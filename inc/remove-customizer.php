@@ -28,7 +28,6 @@ if( ! class_exists( 'HD_Remove_Customizer' ) ) {
 				self::$instance = new HD_Remove_Customizer;
 
 				// Load the structures to trigger initially
-				add_action( 'plugins_loaded', array( self::$instance, 'load_languages' ) );
 				add_action( 'init', array( self::$instance, 'init' ), 10 ); // was priority 5
 				add_action( 'admin_init', array( self::$instance, 'admin_init' ), 10 ); // was priority 5
 
@@ -60,31 +59,6 @@ if( ! class_exists( 'HD_Remove_Customizer' ) ) {
 
 			// Manually overrid Customizer behaviors
 			add_action( 'load-customize.php', array( self::$instance, 'override_load_customizer_action') );
-		}
-
-		/**
-		 * Load our language files
-		 *
-		 * @access public
-		 * @return void
-		 */
-		public function load_languages() {
-			// Set textdomain string
-			$textdomain = 'wp-crap';
-
-			// The 'plugin_locale' filter is also used by default in load_plugin_textdomain()
-			$locale = apply_filters( 'plugin_locale', get_locale(), $textdomain );
-
-			// Set filter for WordPress languages directory
-			$wp_languages_dir = apply_filters( 'crap_wp_languages_dir',	WP_LANG_DIR . '/wp-crap/' . $textdomain . '-' . $locale . '.mo' );
-
-			// Translations: First, look in WordPress' "languages" folder
-			load_textdomain( $textdomain, $wp_languages_dir );
-
-			// Translations: Next, look in plugin's "languages" folder (default)
-			$plugin_dir = basename( dirname( __FILE__ ) );
-			$languages_dir = apply_filters( 'crap_languages_dir', $plugin_dir . '/languages' );
-			load_plugin_textdomain( $textdomain, FALSE, $languages_dir );
 		}
 
 		/**

@@ -1,5 +1,36 @@
 <?php
 
+function hd_basement_remove_post_types_from_content_section( $post_types ) {
+	
+	// if we have post types
+	if( ! empty( $post_types ) ) {
+
+		// loop through each post type
+		foreach( $post_types as $post_type ) {
+
+			// get this post types object
+			$post_type_obj = get_post_type_object( $post_type );
+
+			// if we should not show this post type in the menu - it probably has its own menu
+			if( true !== $post_type_obj->show_in_menu ) {
+				
+				// unset or remove this post type from the array
+				unset( $post_types[ $post_type ] );
+
+			} // end if show in menu is not true
+
+		} // end loop through each post type
+
+	} // end if have post types
+
+	// return the modified post type array
+	return $post_types;
+
+}
+
+add_filter( 'hd_basement_content_submenu_post_types', 'hd_basement_remove_post_types_from_content_section', 10, 1 );
+add_filter( 'hd_basement_content_page_post_types', 'hd_basement_remove_post_types_from_content_section', 10, 1 );
+
 function hd_basement_add_admin_banner() {
 
 	// if this is not a hd user
@@ -196,6 +227,19 @@ function hd_basement_post_listing_taxonomy_links() {
 
 	// get the current admin screen
 	$screen = get_current_screen();
+
+	// if we have a post type
+	if( '' !== $screen->post_type ) {
+
+		// get the post type object
+		$post_type_obj = get_post_type_object( $screen->post_type );
+
+		// if we should not show this post type in the menu - it probably has its own menu
+		if( true !== $post_type_obj->show_in_menu ) {
+			return; // do nothing
+		} // end if show in menu is not true
+
+	}
 
 	// if the screen base is a post listing screen
 	if( 'edit' === $screen->base ) {

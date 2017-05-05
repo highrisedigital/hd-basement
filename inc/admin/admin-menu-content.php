@@ -101,11 +101,11 @@ function hd_basement_content_page() {
 
 											// loop through each content post
 											while( $content_query->have_posts() ) : $content_query->the_post();
-
+												
 												?>
 
 												<li <?php post_class(); ?> id="post-<?php the_ID(); ?>">
-													<a href="<?php echo get_edit_post_link( $post->ID ); ?>"><?php the_title(); ?></a>
+													<a href="<?php echo get_edit_post_link( get_the_ID() ); ?>"><?php the_title(); ?></a>
 												</li>
 
 												<?php

@@ -85,7 +85,7 @@ function hd_basement_add_post_type_sub_menus() {
 	}
 
 	// allow post types to be filterable
-	$post_types = apply_filters( 'hd_basement_content_menu_post_types', $post_types );
+	$post_types = apply_filters( 'hd_basement_content_submenu_post_types', $post_types );
 
 	// check we have post types to action
 	if( ! empty( $post_types ) ) {
@@ -121,18 +121,58 @@ function hd_basement_edit_admin_menus() {
 	/* if the current user is not a wpbasis super user */
 	if( ! is_hd_user() ) {
 
-		$menu_items = apply_filters(
-			'hd_basement_removed_admin_menus',
+		$menu_items = array(
+			//'seperator_one' => 'seperator1',
+			'appearance'	=> 'themes.php',
+			'tools'			=> 'tools.php',
+			'settings'		=> 'options-general.php',
+			'media'			=> 'upload.php',
+		);
+
+		// get all the post types where we should show ui for
+		$post_types = get_post_types(
 			array(
-				//'seperator_one' => 'seperator1',
-				'appearance'	=> 'themes.php',
-				'tools'			=> 'tools.php',
-				'settings'		=> 'options-general.php',
-				'media'			=> 'upload.php',
-				'posts'			=> 'edit.php',
-				'pages'			=> 'edit.php?post_type=page'
+				'show_ui'	=> true
 			)
 		);
+
+		// if attachments is in the post types array
+		if( isset( $post_types[ 'attachment' ] ) ) {
+
+			// remove attachments
+			unset( $post_types[ 'attachment' ] );
+
+		}
+		
+		// check we have post types to action
+		if( ! empty( $post_types ) ) {
+
+			// loop through each post type
+			foreach( $post_types as $post_type ) {
+
+				// get this post types object
+				$post_type_obj = get_post_type_object( $post_type );
+
+				// if this post type is post
+				if( 'post' === $post_type ) {
+
+					// add this post type to the menu items array
+					$menu_items[ $post_type_obj->name ] = 'edit.php';
+
+				// any post type except post
+				} else {
+
+					// add this post type to the menu items array
+					$menu_items[ $post_type_obj->name ] = 'edit.php?post_type=' . $post_type;
+
+				} // end if post type is post
+
+			} // end loop through each post type
+
+		} // end if have post types
+
+		// allow the array to be filtered
+		apply_filters( 'hd_basement_removed_admin_menus', $menu_items );
 
 		// loop through each of the items from our array
 		foreach( $menu_items as $menu_item ) {
