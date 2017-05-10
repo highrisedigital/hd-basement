@@ -41,7 +41,7 @@ function hd_basement_content_page() {
 
 					?>
 
-					<div class="postbox">
+					<div class="postbox hd-content-block">
 
 						<h2 class="hndle ui-sortable-handle"><?php echo $post_type_obj->labels->name; ?></h2>
 
@@ -54,7 +54,7 @@ function hd_basement_content_page() {
 
 							?>
 
-							<div class="hd-basement-content-actions" style="float: left; width: 49.5%; margin-right; 1%;">
+							<div class="hd-basement-content-actions">
 
 								<h4><?php _e( 'Actions', 'hd-basement' ); ?></h4>
 
@@ -72,7 +72,7 @@ function hd_basement_content_page() {
 
 							</div><!-- // hd-basement-content-actions -->
 
-							<div class="hd-basement-content-latest" style="float: left; width: 49.5%;">
+							<div class="hd-basement-content-latest">
 
 								<?php
 

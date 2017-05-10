@@ -28,11 +28,11 @@ function hd_basement_edit_dashboard_widgets() {
 				'context'	=> 'normal',
 				'action'	=> 'remove',
 			),
-			'right_now'	=> array(
-				'id'		=> 'dashboard_right_now',
-				'context'	=> 'normal',
-				'action'	=> 'remove',
-			),
+			// 'right_now'	=> array(
+			// 	'id'		=> 'dashboard_right_now',
+			// 	'context'	=> 'normal',
+			// 	'action'	=> 'remove',
+			// ),
 			'activity'	=> array(
 				'id'		=> 'dashboard_activity',
 				'context'	=> 'normal',
@@ -45,13 +45,13 @@ function hd_basement_edit_dashboard_widgets() {
 				'title'		=> __( 'Thank you! From Highrise Digital', 'hd-basement' ),
 				'callback'	=> 'hd_basement_admin_dashboard_hd_welcome'
 			),
-			'hd_blog'	=> array(
-				'id'		=> 'dashboard_hd_basement_hd_blog',
-				'context'	=> 'side',
-				'action'	=> 'add',
-				'title'		=> __( 'From the Highrise Digital Blog', 'hd-basement' ),
-				'callback'	=> 'hd_basement_admin_dashboard_highrise_blog'
-			),
+			// 'hd_blog'	=> array(
+			// 	'id'		=> 'dashboard_hd_basement_hd_blog',
+			// 	'context'	=> 'side',
+			// 	'action'	=> 'add',
+			// 	'title'		=> __( 'From the Highrise Digital Blog', 'hd-basement' ),
+			// 	'callback'	=> 'hd_basement_admin_dashboard_highrise_blog'
+			// ),
 		)
 	);
 
@@ -165,7 +165,7 @@ if( ! function_exists( 'hd_basement_admin_dashboard_hd_welcome' ) ) {
 
 		?>
 		
-
+		<p>Thank you for choosing Highrise Digital to build your WordPress website. This is the admin area of WordPress which is used for editing and adding content, changing settings and managing the appearance of your website.</p>
 
 		<?php
 
