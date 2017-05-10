@@ -1,4 +1,59 @@
 <?php
+
+function hd_basement_edit_at_a_glance_widget_post_types( $items ) {
+
+	// get the post types which want to be shown in at a glance
+	$post_types = get_post_types(
+		array(
+			'at_a_glance'	=> true
+		),
+		'objects'
+	);
+
+	// if we have some post types
+	if( ! empty( $post_types ) ) {
+
+		// loop through each post type
+		foreach( $post_types as $post_type ) {
+
+			// get the post count for this post type
+			$num_posts = wp_count_posts( $post_type->name );
+
+			// get the published post count for this post type
+			$published_posts = $num_posts->publish;
+
+			// build the output text for this post type
+			$text = _n( '%s ' . $post_type->labels->singular_name, '%s ' . $post_type->labels->name, $published_posts, 'hd-basement' );
+			$text = sprintf( $text, number_format_i18n( $published ) );
+
+			// if the current logged in user can edit this post type
+			if ( current_user_can( $post_type->cap->edit_posts ) ) {
+
+				// set the output
+				$output = '<a href="edit.php?post_type=' . $post_type->name . '">' . $text . '</a>';
+
+			// current user cannot edit this post types posts
+			} else {
+
+				// set the output
+				$output = '<span>' . $text . '</span>';
+
+			}
+
+			// add this output to the items
+			$items[] = $output;
+
+		} // end loop through post types
+
+	} // end if have post types
+
+	// return the modified array of items
+	return $items;
+
+}
+
+add_filter( 'dashboard_glance_items', 'hd_basement_edit_at_a_glance_widget_post_types' );
+
 /**
  * remove and adds in widgets which are filterable by other plugins
  */
