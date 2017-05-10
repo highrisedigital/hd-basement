@@ -59,8 +59,8 @@ function hd_basement_content_page() {
 								<h4><?php _e( 'Actions', 'hd-basement' ); ?></h4>
 
 								<div class="hd-basement-content-actions__links">
-									<a class="page-title-action" href="<?php echo esc_url( admin_url( 'edit.php?post_type=' . $post_type ) ); ?>"><?php _e( 'View All', 'hd-basement' ); ?></a>
-									<a class="page-title-action" href=""><?php _e( 'Add New', 'hd-basement' ); ?></a>
+									<a class="page-title-action post-type-button view-all" href="<?php echo esc_url( admin_url( 'edit.php?post_type=' . $post_type ) ); ?>"><?php _e( 'View All', 'hd-basement' ); ?></a>
+									<a class="page-title-action post-type-button add-new" href="<?php echo esc_url( admin_url( '/post-new.php?post_type=' . $post_type ) ); ?>"><?php _e( 'Add New', 'hd-basement' ); ?></a>
 								</div>
 
 								<?php

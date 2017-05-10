@@ -12,7 +12,6 @@
 			margin-left: 4px;
 		    padding: 4px 8px;
 		    position: relative;
-		    top: -3px;
 		    text-decoration: none;
 		    border: none;
 		    border: 1px solid #ccc;
@@ -51,6 +50,13 @@
 		width: 31%;
 		min-width: auto;
 		margin: 0 1% 1% 0;
+
+		a.tax-button {
+			display: inline-block;
+   			margin-bottom: 8px;
+   			top: 0;
+		}
+
 	}
 
 	@media screen and (max-width: 720px) {
@@ -60,7 +66,7 @@
 		}
 	}
 
-	.hd-content-block:nth-of-type(4n+4) {
+	.hd-content-block:nth-of-type(3n+1) {
 		clear: left;
 	}
 
