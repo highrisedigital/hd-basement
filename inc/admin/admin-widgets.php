@@ -1,5 +1,10 @@
 <?php
-
+/**
+ * adds posts types to the at a glance dashboard widget that have declared
+ * so in register_post_type with 'at_a_glance' => true
+ * @param  array $items the current array of items in the at a glance widget
+ * @return array        our modified array of items in the at a glance widget
+ */
 function hd_basement_edit_at_a_glance_widget_post_types( $items ) {
 
 	// get the post types which want to be shown in at a glance
