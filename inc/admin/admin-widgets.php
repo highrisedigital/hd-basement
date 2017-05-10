@@ -29,7 +29,7 @@ function hd_basement_edit_at_a_glance_widget_post_types( $items ) {
 
 			// build the output text for this post type
 			$text = _n( '%s ' . $post_type->labels->singular_name, '%s ' . $post_type->labels->name, $published_posts, 'hd-basement' );
-			$text = sprintf( $text, number_format_i18n( $published ) );
+			$text = sprintf( $text, number_format_i18n( $published_posts ) );
 
 			// if the current logged in user can edit this post type
 			if ( current_user_can( $post_type->cap->edit_posts ) ) {
