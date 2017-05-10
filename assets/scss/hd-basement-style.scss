@@ -49,7 +49,19 @@
 	.hd-content-block {
 		float: left;
 		width: 31%;
-		margin: 0 1%;
+		min-width: auto;
+		margin: 0 1% 1% 0;
+	}
+
+	@media screen and (max-width: 720px) {
+		.hd-content-block {
+			float: none;
+			width: 100%;
+		}
+	}
+
+	.hd-content-block:nth-of-type(4n+4) {
+		clear: left;
 	}
 
 }
