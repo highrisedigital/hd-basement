@@ -43,7 +43,33 @@ function hd_basement_content_page() {
 
 					<div class="postbox hd-content-block">
 
-						<h2 class="hndle ui-sortable-handle"><?php echo $post_type_obj->labels->name; ?></h2>
+						<?php
+
+							// set a default menu icon
+							$menu_icon = 'dashicons-admin-post';
+
+							// if no menu icon is declared
+							if( null === $post_type_obj->menu_icon ) {
+
+								// if this post type is a page
+								if( 'page' === $post_type_obj->name ) {
+
+									// set the menu icon to be the page icon
+									$menu_icon = 'dashicons-admin-page';
+
+								} // end if post type is page
+
+							// we have a menu icon declared
+							} else {
+
+								// set the menu icon to that declared in register post type
+								$menu_icon = $post_type_obj->menu_icon;
+
+							}
+
+						?>
+
+						<h2 class="hndle ui-sortable-handle"><span class="dashicons <?php esc_attr_e( $menu_icon ); ?>"></span> <?php echo $post_type_obj->labels->name; ?></h2>
 
 						<div class="inside">
 
