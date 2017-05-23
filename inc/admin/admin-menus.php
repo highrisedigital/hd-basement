@@ -172,7 +172,7 @@ function hd_basement_edit_admin_menus() {
 		} // end if have post types
 
 		// allow the array to be filtered
-		apply_filters( 'hd_basement_removed_admin_menus', $menu_items );
+		$menu_items = apply_filters( 'hd_basement_removed_admin_menus', $menu_items );
 
 		// loop through each of the items from our array
 		foreach( $menu_items as $menu_item ) {
