@@ -1,5 +1,11 @@
 <?php
 /**
+ * Controls the handline of this plugin scripts and styles.
+ *
+ * @package HD_Basement
+ */
+
+/**
  * Function hd_basement_enqueue_scripts()
  * Adds plugins scripts and styles
  */
